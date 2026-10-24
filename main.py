@@ -1,9 +1,12 @@
 from customtkinter import *
 
+set_default_color_theme("gray_theme.json")
+
 root = CTk()
 root.title("Calculator")
 root.geometry("350x550")
 root.resizable(width=False,height=False)
+
 
 
 
@@ -30,6 +33,9 @@ btn_6= CTkButton(root,text="6",height=80,width=80,font=("robot",60)).grid(row=3,
 btn_7= CTkButton(root,text="7",height=80,width=80,font=("robot",60)).grid(row=2,column=0,sticky="nsew")
 btn_8= CTkButton(root,text="8",height=80,width=80,font=("robot",60)).grid(row=2,column=1,sticky="nsew")
 btn_9= CTkButton(root,text="9",height=80,width=80,font=("robot",60)).grid(row=2,column=2,sticky="nsew")
+btn_C= CTkButton(root,text="C",height=80,width=80,font=("robot",60)).grid(row=1,column=0,sticky="nsew")
+btn_p1= CTkButton(root,text="(",height=80,width=80,font=("robot",60)).grid(row=1,column=1,sticky="nsew")
+btn_p2= CTkButton(root,text=")",height=80,width=80,font=("robot",60)).grid(row=1,column=2,sticky="nsew")
 
 
 root.mainloop()

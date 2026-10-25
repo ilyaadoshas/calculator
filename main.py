@@ -16,6 +16,31 @@ root.rowconfigure((1, 2, 3, 4, 5), weight=1, uniform="row")
 
 ntr = CTkEntry(root,height=150,width=350,font=("robot",60)).grid(row=0,column=0,columnspan=4,sticky="ew")
 
+def total (a:float,b:float,*args)->float:
+    total = a + b
+    for x in args:
+        total += x
+    return total
+def minus (a:float,b:float,*args)->float:
+    total = a - b
+    for x in args:
+        total -= x
+    return total
+def mult  (a:float,b:float,*args)->float:
+    total = a * b
+    for x in args :
+        total *= x
+    return total
+def division  (a:float,b:float,*args)->float:
+    try:
+        total = a * b
+        for x in args :
+            total /= x
+        return total
+    except ZeroDivisionError:
+        print("Error")
+
+
 btn_div = CTkButton(root,text="÷",height=80,width=80,font=("robot",60)).grid(row=1,column=3,sticky="nsew")
 btn_mult = CTkButton(root,text="x",height=80,width=80,font=("robot",60)).grid(row=2,column=3,sticky="nsew")
 btn_plus = CTkButton(root,text="+",height=80,width=80,font=("robot",60)).grid(row=3,column=3,sticky="nsew")
@@ -36,6 +61,8 @@ btn_9= CTkButton(root,text="9",height=80,width=80,font=("robot",60)).grid(row=2,
 btn_C= CTkButton(root,text="C",height=80,width=80,font=("robot",60)).grid(row=1,column=0,sticky="nsew")
 btn_p1= CTkButton(root,text="(",height=80,width=80,font=("robot",60)).grid(row=1,column=1,sticky="nsew")
 btn_p2= CTkButton(root,text=")",height=80,width=80,font=("robot",60)).grid(row=1,column=2,sticky="nsew")
+
+
 
 
 root.mainloop()

@@ -1,68 +1,41 @@
-from customtkinter import *
+import customtkinter as ctk
 
-set_default_color_theme("gray_theme.json")
+ctk.set_default_color_theme("gray_theme.json")
 
-root = CTk()
-root.title("Calculator")
-root.geometry("350x550")
-root.resizable(width=False,height=False)
+class Calculator (ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Calculator")
+        self.geometry("350x550")
+        self.resizable(width=False,height=False)
 
+        self.row_col()
+        self.display()
+        self.buttons()
 
+    def row_col(self):
+        self.columnconfigure((0,1,2,3),weight = 1,uniform="row")
+        self.rowconfigure(0,weight=2)
+        self.rowconfigure((1,2,3,4,5),weight=1,uniform="col")
 
+    def display(self):
+        self.display = ctk.CTkEntry(self, font=("robot", 50), justify="right")
+        self.display.grid(row=0, column=0, columnspan=4, sticky="nsew",padx=3,pady=3)
+    
+    def buttons(self):
+        labels = [
+            ["C","(",")","÷"],
+            ["7","8","9","x"],
+            ["4","5","6","-"],
+            ["1","2","3","+"],
+            ["±","0",".","="]
 
-root.columnconfigure((0, 1, 2, 3), weight=1, uniform="col")
-root.rowconfigure(0, weight=2)
-root.rowconfigure((1, 2, 3, 4, 5), weight=1, uniform="row")
+        ]
+        for r,row in enumerate(labels,start=1):
+            for c,text in enumerate(row):
+                btn = ctk.CTkButton(self,text=text,height=20,width=20,)
+                btn.grid(row=r,column=c,sticky="nsew",padx=3,pady=3)
 
-ntr = CTkEntry(root,height=150,width=350,font=("robot",60)).grid(row=0,column=0,columnspan=4,sticky="ew")
-
-def total (a:float,b:float,*args)->float:
-    total = a + b
-    for x in args:
-        total += x
-    return total
-def minus (a:float,b:float,*args)->float:
-    total = a - b
-    for x in args:
-        total -= x
-    return total
-def mult  (a:float,b:float,*args)->float:
-    total = a * b
-    for x in args :
-        total *= x
-    return total
-def division  (a:float,b:float,*args)->float:
-    try:
-        total = a * b
-        for x in args :
-            total /= x
-        return total
-    except ZeroDivisionError:
-        print("Error")
-
-
-btn_div = CTkButton(root,text="÷",height=80,width=80,font=("robot",60)).grid(row=1,column=3,sticky="nsew")
-btn_mult = CTkButton(root,text="x",height=80,width=80,font=("robot",60)).grid(row=2,column=3,sticky="nsew")
-btn_plus = CTkButton(root,text="+",height=80,width=80,font=("robot",60)).grid(row=3,column=3,sticky="nsew")
-btn_minus = CTkButton(root,text="-",height=80,width=80,font=("robot",60)).grid(row=4,column=3,sticky="nsew")
-btn_eq = CTkButton(root,text="=",height=80,width=80,font=("robot",60)).grid(row=5,column=3,sticky="nsew")
-btn_dot = CTkButton(root,text=".",height=80,width=80,font=("robot",60)).grid(row=5,column=2,sticky="nsew")
-btn_0= CTkButton(root,text="0",height=80,width=80,font=("robot",60)).grid(row=5,column=1,sticky="nsew")
-btn_con= CTkButton(root,text="±",height=80,width=80,font=("robot",60)).grid(row=5,column=0,sticky="nsew")
-btn_1= CTkButton(root,text="1",height=80,width=80,font=("robot",60)).grid(row=4,column=0,sticky="nsew")
-btn_2= CTkButton(root,text="2",height=80,width=80,font=("robot",60)).grid(row=4,column=1,sticky="nsew")
-btn_3= CTkButton(root,text="3",height=80,width=80,font=("robot",60)).grid(row=4,column=2,sticky="nsew")
-btn_4= CTkButton(root,text="4",height=80,width=80,font=("robot",60)).grid(row=3,column=0,sticky="nsew")
-btn_5= CTkButton(root,text="5",height=80,width=80,font=("robot",60)).grid(row=3,column=1,sticky="nsew")
-btn_6= CTkButton(root,text="6",height=80,width=80,font=("robot",60)).grid(row=3,column=2,sticky="nsew")
-btn_7= CTkButton(root,text="7",height=80,width=80,font=("robot",60)).grid(row=2,column=0,sticky="nsew")
-btn_8= CTkButton(root,text="8",height=80,width=80,font=("robot",60)).grid(row=2,column=1,sticky="nsew")
-btn_9= CTkButton(root,text="9",height=80,width=80,font=("robot",60)).grid(row=2,column=2,sticky="nsew")
-btn_C= CTkButton(root,text="C",height=80,width=80,font=("robot",60)).grid(row=1,column=0,sticky="nsew")
-btn_p1= CTkButton(root,text="(",height=80,width=80,font=("robot",60)).grid(row=1,column=1,sticky="nsew")
-btn_p2= CTkButton(root,text=")",height=80,width=80,font=("robot",60)).grid(row=1,column=2,sticky="nsew")
-
-
-
-
-root.mainloop()
+if __name__ == "__main__":
+    app = Calculator()
+    app.mainloop()
